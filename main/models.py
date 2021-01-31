@@ -18,7 +18,7 @@ class TweetQuerySet(models.QuerySet):
         profiles_exist = user.following.exists()
         followed_users_id = []
         if profiles_exist:
-            followed_users_id = user.following.values_list("user__id", flat=True) # [x.user.id for x in profiles]
+            followed_users_id = user.following.values_list("user__id", flat=True) 
         return self.filter(
             Q(user__id__in=followed_users_id) |
             Q(user=user)
@@ -47,12 +47,3 @@ class Tweet(models.Model):
     def is_retweet(self):
         return self.parent != None
     
-    def serialize(self):
-        '''
-        Feel free to delete!
-        '''
-        return {
-            "id": self.id,
-            "content": self.content,
-            "likes": random.randint(0, 200)
-        }
