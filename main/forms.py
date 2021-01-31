@@ -1,12 +1,12 @@
 from django.conf import settings
 from django import forms
-from .models import Tweet
+from .models import Twitter
 
 max_twitter_len = settings.MAX_TWEET_LENGTH
 
 class TweetForm(forms.ModelForm):
     class Meta:
-        model = Tweet
+        model = Twitter
         fields = ['content']
     
     def clean_content(self):
